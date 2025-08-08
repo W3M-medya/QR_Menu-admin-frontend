@@ -53,7 +53,7 @@ const Register2 = () => (
                   color="textSecondary"
                   mb={1}
                 >
-                  Your Social Campaigns
+                  Your Social Campaigns adasdasd
                 </Typography>
               }
               subtitle={
