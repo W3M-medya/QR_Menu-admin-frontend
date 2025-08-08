@@ -12,6 +12,7 @@ import Link from "next/link";
 import CustomTextField from "@/app/(DashboardLayout)/components/forms/theme-elements/CustomTextField";
 import { Login } from "@/app/services/Auth"; // Gerekirse yolunu düzeltin
 
+import { useAuthStore } from "@/app/store/authStore";
 interface loginType {
   title?: string;
   subtitle?: React.ReactNode;
@@ -29,6 +30,7 @@ const AuthLogin = ({ title, subtitle, subtext }: loginType) => {
       const response = await Login(username, password);
       if (response && response.success) {
         router.push("/");
+        useAuthStore.getState().login(response.user, response.token);
       } else {
         setError("Kullanıcı adı veya şifre yanlış. Lütfen tekrar deneyin.");
       }

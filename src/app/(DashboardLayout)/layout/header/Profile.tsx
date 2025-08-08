@@ -11,9 +11,14 @@ import {
   ListItemText,
 } from "@mui/material";
 
-import { IconListCheck, IconMail, IconUser } from "@tabler/icons-react";
+import { IconListCheck, IconMail, IconUser, IconUserCheck } from "@tabler/icons-react";
+
+
+import { useAuthStore } from "@/app/store/authStore";
 
 const Profile = () => {
+  const user = useAuthStore((state) => state.user);
+  const logout = useAuthStore((state) => state.logout);
   const [anchorEl2, setAnchorEl2] = useState(null);
   const handleClick2 = (event: any) => {
     setAnchorEl2(event.currentTarget);
@@ -67,33 +72,29 @@ const Profile = () => {
           <ListItemIcon>
             <IconUser width={20} />
           </ListItemIcon>
-          <ListItemText>My Profile</ListItemText>
+          <ListItemText>{user?.name}</ListItemText>
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <IconMail width={20} />
-          </ListItemIcon>
-          <ListItemText>My Account</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <IconListCheck width={20} />
-          </ListItemIcon>
-          <ListItemText>My Tasks</ListItemText>
-        </MenuItem>
-        <Box mt={1} py={1} px={2}>
-          <Button
-            href="/authentication/login"
-            variant="outlined"
-            color="primary"
-            component={Link}
-            fullWidth
-          >
-            Logout
-          </Button>
-        </Box>
-      </Menu>
-    </Box>
+          <IconUserCheck width={20} />
+        </ListItemIcon>
+        <ListItemText>Rol: {user?.role}</ListItemText>
+      </MenuItem>
+
+      <Box mt={1} py={1} px={2}>
+        <Button
+          href="/authentication/login"
+          variant="outlined"
+          color="primary"
+          component={Link}
+          fullWidth
+          onClick={logout}
+        >
+          çıkış
+        </Button>
+      </Box>
+    </Menu>
+    </Box >
   );
 };
 

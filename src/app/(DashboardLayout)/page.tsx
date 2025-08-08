@@ -9,7 +9,35 @@ import ProductPerformance from '@/app/(DashboardLayout)/components/dashboard/Pro
 import Blog from '@/app/(DashboardLayout)/components/dashboard/Blog';
 import MonthlyEarnings from '@/app/(DashboardLayout)/components/dashboard/MonthlyEarnings';
 
+
+
+import { useAuthStore } from "@/app/store/authStore";
+import { useEffect } from 'react';
+
 const Dashboard = () => {
+  const loadFromStorage = useAuthStore((state) => state.loadFromStorage);
+  const logout = useAuthStore((state) => state.logout);
+  const token = useAuthStore((state) => state.token);
+
+  useEffect(() => {
+    loadFromStorage();
+  }, []); useEffect(() => {
+    if (!token) return;
+
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    if (payload.exp) {
+      const expireMs = payload.exp * 1000 - Date.now();
+      if (expireMs > 0) {
+        const timer = setTimeout(() => {
+          logout();
+        }, expireMs);
+        return () => clearTimeout(timer);
+      } else {
+        logout();
+      }
+    }
+  }, [token]);
+
   return (
     <PageContainer title="Dashboard" description="this is Dashboard">
       <Box>

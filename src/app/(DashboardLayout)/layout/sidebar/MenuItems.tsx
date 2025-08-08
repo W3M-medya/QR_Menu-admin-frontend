@@ -24,13 +24,13 @@ const Menuitems = [
   },
   {
     navlabel: true,
-    subheader: "UTILITIES",
+    subheader: "Ürünler",
   },
   {
     id: uniqueId(),
-    title: "Typography",
+    title: "Ürün Listesi",
     icon: IconTypography,
-    href: "/utilities/typography",
+    href: "/urunler",
   },
   {
     id: uniqueId(),
@@ -48,28 +48,8 @@ const Menuitems = [
     icon: IconLogin,
     href: "/authentication/login",
   },
-  {
-    id: uniqueId(),
-    title: "Register",
-    icon: IconUserPlus,
-    href: "/authentication/register",
-  },
-  {
-    navlabel: true,
-    subheader: " EXTRA",
-  },
-  {
-    id: uniqueId(),
-    title: "Icons",
-    icon: IconMoodHappy,
-    href: "/icons",
-  },
-  {
-    id: uniqueId(),
-    title: "Sample Page",
-    icon: IconAperture,
-    href: "/sample-page",
-  },
+  
+   
 
 ];
 
