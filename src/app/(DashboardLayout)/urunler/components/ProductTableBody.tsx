@@ -4,11 +4,18 @@ import type { getProductList } from '@/app/types/product';
 
 const ProductTableBody = ({ products }: { products: getProductList[] }) => (
     <TableBody>
+        {products.length === 0 && (
+            <TableRow>
+                <TableCell colSpan={7} align="center">
+                    <Typography>Ürün Bulunamadı</Typography>
+                </TableCell>
+            </TableRow>
+        )}
         {products.map((product) => (
             <TableRow key={product._id}>
                 <TableCell>
                     <Typography sx={{ fontSize: '15px', fontWeight: '500' }}>
-                        {product._id}
+                        {product.productCode}
                     </Typography>
                 </TableCell>
                 <TableCell>
@@ -24,7 +31,9 @@ const ProductTableBody = ({ products }: { products: getProductList[] }) => (
                 </TableCell>
                 <TableCell>
                     <Typography color="textSecondary" sx={{ fontSize: '13px' }}>
-                        {product.productCategory}
+                        {/* {product.productCategory} //TODO kategori bilgisi eklenmeli */}
+                        Kategori Bilgisi
+
                     </Typography>
                 </TableCell>
                 <TableCell>

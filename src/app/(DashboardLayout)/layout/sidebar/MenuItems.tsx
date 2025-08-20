@@ -34,9 +34,9 @@ const Menuitems = [
   },
   {
     id: uniqueId(),
-    title: "Shadow",
+    title: "Kategoriler",
     icon: IconCopy,
-    href: "/utilities/shadow",
+    href: "/katagoriler",
   },
   {
     navlabel: true,
